@@ -1,0 +1,244 @@
+<?php
+
+include_once 'topo.html';
+//require_once 'validador.php';
+include_once '../conexao.php';
+
+$id = $_GET['id'];
+
+$sql = "SELECT * FROM user WHERE id = $id ";
+
+$query = mysqli_query($conexao, $sql);
+
+if ($query) {
+    $user = mysqli_fetch_array($query);
+?>
+<html lang="pt-5">
+<head>
+  <title> &mdash; tcc</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+  <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="fonts/flaticon-covid/font/flaticon.css">
+
+  <link rel="stylesheet" href="css/aos.css">
+
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+
+  <div id="overlayer"></div>
+  <div class="loader">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    
+    <header class="site-navbar light js-sticky-header site-navbar-target" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+
+          <div class="col-6 col-xl-2">
+            <div class="mb-0 site-logo"><a href="index.html" class="mb-0">Help Location<span class="text-primary">.</span> </a></div>
+          </div>
+
+           <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+
+              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li class="active"><a href="index.php" class="nav-link">Home</a></li>
+                <li class="has-children">
+                  <a href="preve.html" class="nav-link">Login e Cadastro</a>
+                  <ul class="dropdown">
+                    <li><a href="login.php" class="nav-link">Login</a></li>
+                    <li><a href="cadastro.php" class="nav-link">Cadastro</a></li>
+                    <li class="has-children">
+                    
+                      <ul class="dropdown">
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">1</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+             
+                <li><a href="blog.html" class="nav-link">Chat</a></li>
+                <li><a href="contato.php" class="nav-link">Contato</a></li>
+              </ul>
+            </nav>
+          </div>
+
+
+          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3 text-black"></span></a></div>
+
+        </div>
+      </div>
+
+    </header>
+
+    
+
+    <div class="hero-v1">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mr-auto text-center text-lg-left">
+            <span class="d-block subheading">Help Location</span>
+            <h1 class="heading mb-3">Cuide-se de você mesmo</h1>
+            <p class="mb-5"> Direcionando e orientando você para uma melhor qualidade de vida.</p>
+            <p class="mb-4"><a href="#" class="btn btn-primary">Previna-se</a></p>
+
+
+
+          </div>
+          <div class="col-lg-6">
+            <figure class="illustration">
+              <img src="images/illustrati.png" alt="Image" class="img-fluid">
+            </figure>
+          </div>
+          <div class="col-lg-6"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- MAIN -->
+    
+    <div class="site-section stats">
+      <div class="container">
+        <div class="row mb-3">
+          <div class="col-lg-7 text-center mx-auto">
+            <h2 class="section-heading">Editar usuario</h2>
+            <p> ..</p>
+          </div>
+        </div>
+         <div class="container">    
+  <div class="row">
+
+    <div class="card col-8">
+      <div class="card-header bg-secondary text-white">
+        Editar Usurário
+      </div>
+      <div class="card-body">
+        <form action="atualiza_perfil.php" method="post"  enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+          <div class="form-group">
+            <label>Nome</label>
+            <input name="nome" type="text" class="form-control" placeholder="Nome" value="<?php echo $user['nome']; ?>" required>
+          </div>
+
+          <div class="form-group">
+            <label>E-mail</label>
+            <input name="email" type="email" class="form-control" placeholder="E-mail" value="<?php echo $user['email']; ?>" required>
+          </div>
+
+          <div class="form-group">
+            <label>Senha</label>
+            <input name="senha" type="password" class="form-control" placeholder="******"  value="<?php echo $user['senha']; ?>" required>
+          </div>
+
+          <div class="form-group">
+            <label>Perfil</label>
+            <select name="perfil" class="form-control">
+                <option value="1" <?php if($user['perfil'] == 1) echo 'selected="selected"'; ?>>Administrador</option>
+                <option value="2" <?php if($user['perfil'] == 2) echo 'selected="selected"'; ?>>Usuário</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Foto</label><br>
+                <img src="img/<?php echo $user['imagem']; ?>" width="30">
+                <input type="hidden" name="imgId" value="<?php echo $user['imagem']; ?>">
+            <input type="file" name="imagem" class="form-control-file">
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-6">
+              <a href="usuarios.php"><button class="btn btn-lg btn-secondary btn-block">Voltar</button></a>
+            </div>
+
+            <div class="col-6">
+            <button class="btn btn-lg btn-info btn-block" type="submit">Atualizar</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+       
+        <div class="row text-center">
+          <div class="col-md-12">
+            <div class="border-top pt-5">
+              <p class="copyright"><small>
+              
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> Desenvolvido por Pedro S. Saboia <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" > Pedro</a>
+              </small></p>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- .site-wrap -->
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.countdown.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.fancybox.min.js"></script>
+  <script src="js/jquery.sticky.js"></script>
+  <script src="js/isotope.pkgd.min.js"></script>
+
+
+  <script src="js/main.js"></script>
+
+
+</body>
+</html>
